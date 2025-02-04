@@ -1,0 +1,59 @@
+Code:
+import java.util.Scanner;
+import java.util.Random;
+class Randomnumber{
+    public int number , guess;
+    public int count = 1;
+    Randomnumber(){
+        Random abc = new Random();
+        this.number = abc.nextInt(1000);
+    }
+    public void setguess(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number(within 1000): ");
+        guess = sc.nextInt();
+    }
+    public void guessthenumber(){
+        while(guess!=number){
+              
+            if(guess == number){
+                //System.out.format("You guessed the number in %d th count.", + count);
+                break;
+            }
+            else if(guess>number){
+                System.out.println("You guessed greater number.\nTry smaller one.");
+                count++;
+                setguess();
+            }
+             else{
+                System.out.println("You guessed smaller number.\nTry larger one.");
+                count++;
+                setguess();
+            }
+        }
+        System.out.format("You guessed the number in %dth attempt.", + count);
+        System.out.println();
+    }
+    public void feedback(){
+        if(count==1){
+            System.out.println("Brilliant mind!");
+        }
+        else if(count>1 && count<=5){
+            System.out.println("You are having excellent mind.");
+        }
+        else if(count>5 && count<=12){
+            System.out.println("You are having very good mind.");
+        }
+        else {
+            System.out.println("You are having good  mind.");
+        }
+    }
+}
+public class Main{
+    public static void main(String[] args){
+        Randomnumber rn = new Randomnumber();
+        rn.setguess();
+        rn.guessthenumber();
+        rn.feedback();
+    }
+}
